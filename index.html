@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кликер игра</title>
+    <style>
+        /* Глобальные стили */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #4a90e2, #9013fe);
+            font-family: Arial, sans-serif;
+        }
+
+        /* Контейнер для игры */
+        #game-container {
+            text-align: center;
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        /* Заголовок */
+        #game-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Счетчик шагов */
+        #counter-display {
+            font-size: 48px;
+            font-weight: bold;
+            color: #4a90e2;
+            margin: 20px 0;
+            transition: transform 0.2s ease;
+        }
+
+        /* Кнопка клика */
+        #click-button {
+            display: inline-block;
+            background: #4a90e2;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Анимация при наведении на кнопку */
+        #click-button:hover {
+            background: #9013fe;
+            transform: scale(1.1);
+        }
+
+        /* Анимация при нажатии */
+        #click-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Небольшая подпись */
+        #footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <!-- Заголовок игры -->
+        <div id="game-title">Кликер игра</div>
+
+        <!-- Счетчик -->
+        <div id="counter-display">0</div>
+
+        <!-- Кнопка для кликов -->
+        <button id="click-button" aria-label="Button to increment counter">Кликни сюда!</button>
+
+        <!-- Подпись -->
+        <div id="footer">Сделано с ❤️</div>
+    </div>
+
+    <script>
+        // Главная переменная счетчика
+        let counter = 0;
+
+        // Получаем элементы HTML
+        const counterDisplay = document.getElementById('counter-display');
+        const clickButton = document.getElementById('click-button');
+
+        // Обработчик кликов
+        clickButton.addEventListener('click', () => {
+            // Увеличиваем счетчик
+            counter++;
+            
+            // Обновляем отображение счетчика
+            counterDisplay.textContent = counter;
+
+            // Легкая анимация увеличения при клике
+            counterDisplay.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                counterDisplay.style.transform = 'scale(1)';
+            }, 200);
+        });
+
+        // Обработка на случай, если JavaScript отключен
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!clickButton || !counterDisplay) {
+                console.error(' Не удалось найти основной элемент для игры.');
+            }
+        });
+    </script>
+</body>
+</html>
